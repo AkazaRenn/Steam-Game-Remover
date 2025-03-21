@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CONTAINER_NAME="steam-game-remover"
-TAG=$(curl -s https://mcr.microsoft.com/v2/playwright/python/tags/list | jq -r '.tags | .[]' | sort -rV | grep jammy-amd64 | head -n 1)
+TAG=$(curl -s https://mcr.microsoft.com/v2/playwright/python/tags/list | jq -r '.tags | .[]' | grep -E 'v([0-9\.]+)-amd64' | sort -rV | head -n1)
 IMAGE="mcr.microsoft.com/playwright/python:${TAG}"
 
 docker pull ${IMAGE}
